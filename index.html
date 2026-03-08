@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="ru" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ВерноеСлово — Юридические документы</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-deep-navy: #0a1628;
+      --color-indigo: #1a2744;
+      --color-gold: #c9a962;
+      --color-gold-light: #dfc07f;
+      --color-cream: #faf8f5;
+      --color-white: #ffffff;
+      --color-text-dark: #2d3748;
+      --color-text-muted: #64748b;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--color-cream);
+      overflow-x: hidden;
+    }
+    
+    .font-serif-elegant {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(165deg, var(--color-deep-navy) 0%, var(--color-indigo) 50%, #1e3a5f 100%);
+    }
+    
+    .paper-texture {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+    }
+    
+    .border-gold {
+      border-color: var(--color-gold);
+    }
+    
+    .text-gold {
+      color: var(--color-gold);
+    }
+    
+    .glow-subtle {
+      box-shadow: 0 0 60px rgba(201, 169, 98, 0.15);
+    }
+    
+    .card-elegant {
+      background: var(--color-white);
+      border: 1px solid rgba(201, 169, 98, 0.2);
+      position: relative;
+    }
+    
+    .card-elegant::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      opacity: 0.6;
+    }
+    
+    .decorative-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    }
+    
+    .section-light {
+      background: var(--color-cream);
+    }
+    
+    .section-white {
+      background: var(--color-white);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+      color: var(--color-deep-navy);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201, 169, 98, 0.4);
+    }
+    
+    .btn-outline {
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold);
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(201, 169, 98, 0.1);
+    }
+    
+    .icon-container {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201, 169, 98, 0.3);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(201, 169, 98, 0.05) 0%, rgba(201, 169, 98, 0.1) 100%);
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--color-gold);
+      border-radius: 50%;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--color-gold);
+    }
+    
+    .input-elegant {
+      border: 1px solid rgba(201, 169, 98, 0.3);
+      background: var(--color-white);
+      transition: all 0.3s ease;
+    }
+    
+    .input-elegant:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1);
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    
+    /* Decorative corner ornaments */
+    .corner-ornament {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.3;
+    }
+    
+    .corner-tl { top: 20px; left: 20px; }
+    .corner-tr { top: 20px; right: 20px; transform: rotate(90deg); }
+    .corner-bl { bottom: 20px; left: 20px; transform: rotate(-90deg); }
+    .corner-br { bottom: 20px; right: 20px; transform: rotate(180deg); }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full min-h-full overflow-auto"><!-- Hero Section -->
+   <section class="hero-gradient relative min-h-screen flex items-center justify-center overflow-hidden"><!-- Paper texture overlay -->
+    <div class="absolute inset-0 paper-texture pointer-events-none"></div><!-- Subtle light effect -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-b from-white/5 to-transparent rounded-full blur-3xl pointer-events-none"></div><!-- Corner ornaments -->
+    <svg class="corner-ornament corner-tl" viewbox="0 0 60 60" fill="none"><path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#c9a962" /> <path d="M12 12 L40 12 L40 16 L16 16 L16 40 L12 40 Z" fill="#c9a962" opacity="0.5" />
+    </svg>
+    <svg class="corner-ornament corner-tr" viewbox="0 0 60 60" fill="none"><path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#c9a962" /> <path d="M12 12 L40 12 L40 16 L16 16 L16 40 L12 40 Z" fill="#c9a962" opacity="0.5" />
+    </svg>
+    <svg class="corner-ornament corner-bl" viewbox="0 0 60 60" fill="none"><path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#c9a962" /> <path d="M12 12 L40 12 L40 16 L16 16 L16 40 L12 40 Z" fill="#c9a962" opacity="0.5" />
+    </svg>
+    <svg class="corner-ornament corner-br" viewbox="0 0 60 60" fill="none"><path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#c9a962" /> <path d="M12 12 L40 12 L40 16 L16 16 L16 40 L12 40 Z" fill="#c9a962" opacity="0.5" />
+    </svg>
+    <div class="relative z-10 text-center px-6 py-20 max-w-4xl mx-auto"><!-- Small decorative scales icon -->
+     <div class="flex justify-center mb-8 animate-fade-in">
+      <svg class="w-12 h-12 text-gold opacity-60" viewbox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 4 L24 44" /> <path d="M8 12 L40 12" /> <path d="M8 12 L4 24 C4 28 8 32 12 32 C16 32 20 28 20 24 L16 12" /> <path d="M32 12 L28 24 C28 28 32 32 36 32 C40 32 44 28 44 24 L40 12" /> <circle cx="24" cy="4" r="2" />
+      </svg>
+     </div><!-- Brand Name -->
+     <h1 id="brand-name" class="font-serif-elegant text-5xl md:text-7xl lg:text-8xl font-semibold text-white mb-6 tracking-wide animate-slide-up">ВерноеСлово</h1><!-- Decorative line -->
+     <div class="decorative-line w-48 mx-auto mb-8 animate-fade-in delay-100"></div><!-- Tagline -->
+     <p id="tagline" class="text-xl md:text-2xl text-gold font-light mb-8 animate-slide-up delay-200" style="font-family: 'Cormorant Garamond', serif;">Документы, которые выдерживают проверку судом и оппонентом</p><!-- Description -->
+     <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-slide-up delay-300">Подготавливаем юридические документы точно, структурно и по существу: без воды, без шаблонной небрежности, без громких обещаний</p><!-- CTA Buttons -->
+     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up delay-400"><a href="#contact" class="btn-primary px-8 py-4 rounded-lg font-medium text-lg"> Оставить заявку </a> <a href="#services" class="btn-outline px-8 py-4 rounded-lg font-medium text-lg"> Узнать стоимость </a>
+     </div><!-- Trust badges -->
+     <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-white/60 text-sm animate-fade-in delay-400">
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+       </svg><span>Конфиденциально</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+       </svg><span>В срок</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+       </svg><span>Юридически грамотно</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+       </svg><span>Понятным языком</span>
+      </div>
+     </div><!-- Scroll indicator -->
+     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-gold/50" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section class="section-white py-20 md:py-28">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+     <h2 class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style="color: var(--color-deep-navy);">Правильный документ — половина победы</h2>
+     <div class="decorative-line w-24 mx-auto mb-8"></div>
+     <p class="text-lg md:text-xl leading-relaxed" style="color: var(--color-text-dark);">Юридический документ — это ваш голос в суде и переговорах. От того, как сформулирована позиция, как выстроена аргументация и какие нормы права применены, зависит исход дела. Мы готовим документы так, чтобы каждое слово работало на вашу защиту: точно, последовательно и юридически безупречно.</p>
+    </div>
+   </section><!-- Services Section -->
+   <section id="services" class="section-light py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 id="services-title" class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style="color: var(--color-deep-navy);">Услуги</h2>
+      <div class="decorative-line w-24 mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Service 1 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Исковые заявления</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Грамотное изложение требований и фактических обстоятельств</p>
+      </div><!-- Service 2 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Жалобы и возражения</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Аргументированный ответ на позицию оппонента</p>
+      </div><!-- Service 3 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Ходатайства</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Процессуальные документы для суда</p>
+      </div><!-- Service 4 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Апелляции и кассации</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Обжалование судебных решений</p>
+      </div><!-- Service 5 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Досудебные претензии</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Урегулирование спора до суда</p>
+      </div><!-- Service 6 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Договоры</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Составление и анализ договоров</p>
+      </div><!-- Service 7 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Подготовка к суду</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Формирование правовой позиции</p>
+      </div><!-- Service 8 -->
+      <div class="card-elegant rounded-xl p-6 glow-subtle">
+       <div class="icon-container mb-4">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-2" style="color: var(--color-deep-navy);">Документы на английском</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Юридический перевод и составление</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Advantages Section -->
+   <section class="section-white py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style="color: var(--color-deep-navy);">Преимущества</h2>
+      <div class="decorative-line w-24 mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.2) 100%); border: 1px solid rgba(201, 169, 98, 0.3);">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-2" style="color: var(--color-deep-navy);">Точная формулировка</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Каждое слово выверено юридически</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.2) 100%); border: 1px solid rgba(201, 169, 98, 0.3);">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-2" style="color: var(--color-deep-navy);">Понятная структура</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Логичное изложение аргументов</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.2) 100%); border: 1px solid rgba(201, 169, 98, 0.3);">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-2" style="color: var(--color-deep-navy);">Конфиденциальность</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Полная защита ваших данных</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.2) 100%); border: 1px solid rgba(201, 169, 98, 0.3);">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-2" style="color: var(--color-deep-navy);">Соблюдение сроков</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Всегда точно в оговорённый срок</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(201, 169, 98, 0.2) 100%); border: 1px solid rgba(201, 169, 98, 0.3);">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-2" style="color: var(--color-deep-navy);">Без воды</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Только существенное по делу</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- For Who Section -->
+   <section class="section-light py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style="color: var(--color-deep-navy);">Для кого подходит</h2>
+      <div class="decorative-line w-24 mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card-elegant rounded-xl p-8 text-center glow-subtle">
+       <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.1) 100%); border: 2px solid rgba(201, 169, 98, 0.2);">
+        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-3" style="color: var(--color-deep-navy);">Частные лица</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Защита прав потребителей, трудовые споры, семейные дела</p>
+      </div>
+      <div class="card-elegant rounded-xl p-8 text-center glow-subtle">
+       <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.1) 100%); border: 2px solid rgba(201, 169, 98, 0.2);">
+        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-3" style="color: var(--color-deep-navy);">Малый бизнес</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Договоры, претензии, защита интересов компании</p>
+      </div>
+      <div class="card-elegant rounded-xl p-8 text-center glow-subtle">
+       <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.1) 100%); border: 2px solid rgba(201, 169, 98, 0.2);">
+        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-3" style="color: var(--color-deep-navy);">Подготовка к суду</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Комплексная подготовка правовой позиции</p>
+      </div>
+      <div class="card-elegant rounded-xl p-8 text-center glow-subtle">
+       <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.1) 100%); border: 2px solid rgba(201, 169, 98, 0.2);">
+        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+       </div>
+       <h3 class="font-serif-elegant text-xl font-semibold mb-3" style="color: var(--color-deep-navy);">Документы на английском</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Международные контракты и переписка</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Process Section -->
+   <section class="section-white py-20 md:py-28">
+    <div class="max-w-5xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style="color: var(--color-deep-navy);">Порядок работы</h2>
+      <div class="decorative-line w-24 mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center relative">
+       <div class="step-number mx-auto mb-6">
+        1
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-3" style="color: var(--color-deep-navy);">Описание ситуации</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Вы рассказываете о своём деле и присылаете имеющиеся документы</p><!-- Connector line -->
+       <div class="hidden lg:block absolute top-5 left-full w-full h-px" style="background: linear-gradient(90deg, var(--color-gold), transparent);"></div>
+      </div>
+      <div class="text-center relative">
+       <div class="step-number mx-auto mb-6">
+        2
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-3" style="color: var(--color-deep-navy);">Анализ задачи</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Изучаем материалы, определяем стратегию и согласовываем объём работ</p>
+       <div class="hidden lg:block absolute top-5 left-full w-full h-px" style="background: linear-gradient(90deg, var(--color-gold), transparent);"></div>
+      </div>
+      <div class="text-center relative">
+       <div class="step-number mx-auto mb-6">
+        3
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-3" style="color: var(--color-deep-navy);">Подготовка текста</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Готовим документ с учётом всех требований и особенностей дела</p>
+       <div class="hidden lg:block absolute top-5 left-full w-full h-px" style="background: linear-gradient(90deg, var(--color-gold), transparent);"></div>
+      </div>
+      <div class="text-center">
+       <div class="step-number mx-auto mb-6">
+        4
+       </div>
+       <h3 class="font-serif-elegant text-lg font-semibold mb-3" style="color: var(--color-deep-navy);">Передача документа</h3>
+       <p class="text-sm" style="color: var(--color-text-muted);">Вы получаете готовый документ с пояснениями по его использованию</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="hero-gradient relative py-20 md:py-28">
+    <div class="absolute inset-0 paper-texture pointer-events-none"></div>
+    <div class="relative z-10 max-w-2xl mx-auto px-6">
+     <div class="text-center mb-12">
+      <h2 id="contact-title" class="font-serif-elegant text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6">Оставить заявку</h2>
+      <div class="decorative-line w-24 mx-auto mb-6"></div>
+      <p class="text-white/70">Опишите вашу ситуацию, и мы свяжемся с вами для обсуждения деталей</p>
+     </div>
+     <form id="contact-form" class="space-y-6">
+      <div><label for="name" class="block text-sm font-medium text-white/80 mb-2">Ваше имя</label> <input type="text" id="name" name="name" required class="input-elegant w-full px-4 py-3 rounded-lg text-gray-900" placeholder="Как к вам обращаться">
+      </div>
+      <div><label for="contact-info" class="block text-sm font-medium text-white/80 mb-2">Телефон или email</label> <input type="text" id="contact-info" name="contact" required class="input-elegant w-full px-4 py-3 rounded-lg text-gray-900" placeholder="Для связи с вами">
+      </div>
+      <div><label for="message" class="block text-sm font-medium text-white/80 mb-2">Опишите ситуацию</label> <textarea id="message" name="message" rows="5" required class="input-elegant w-full px-4 py-3 rounded-lg text-gray-900 resize-none" placeholder="Кратко расскажите о вашем деле: что произошло, какой документ нужен"></textarea>
+      </div>
+      <div class="pt-4"><button type="submit" class="btn-primary w-full py-4 rounded-lg font-medium text-lg flex items-center justify-center gap-2"> <span>Отправить заявку</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg></button>
+      </div>
+      <p class="text-center text-white/50 text-sm">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+     </form><!-- Success message -->
+     <div id="success-message" class="hidden text-center py-12">
+      <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: rgba(201, 169, 98, 0.2); border: 2px solid var(--color-gold);">
+       <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+       </svg>
+      </div>
+      <h3 class="font-serif-elegant text-2xl font-semibold text-white mb-4">Заявка отправлена</h3>
+      <p class="text-white/70">Заявка действительно доставлена хотя бы по одному каналу</p>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="section-white py-12 border-t" style="border-color: rgba(201, 169, 98, 0.2);">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+       <svg class="w-8 h-8 text-gold opacity-60" viewbox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 4 L24 44" /> <path d="M8 12 L40 12" /> <path d="M8 12 L4 24 C4 28 8 32 12 32 C16 32 20 28 20 24 L16 12" /> <path d="M32 12 L28 24 C28 28 32 32 36 32 C40 32 44 28 44 24 L40 12" />
+       </svg><span class="font-serif-elegant text-xl font-semibold" style="color: var(--color-deep-navy);">ВерноеСлово</span>
+      </div>
+      <p class="text-sm" style="color: var(--color-text-muted);">© 2024 ВерноеСлово. Все права защищены.</p>
+      <div class="flex items-center gap-2 text-sm" style="color: var(--color-text-muted);">
+       <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+       </svg><span>Конфиденциальность гарантирована</span>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      brand_name: 'ВерноеСлово',
+      tagline: 'Документы, которые выдерживают проверку судом и оппонентом',
+      services_title: 'Услуги',
+      contact_title: 'Оставить заявку',
+      primary_color: '#c9a962',
+      secondary_color: '#0a1628',
+      text_color: '#ffffff',
+      surface_color: '#faf8f5',
+      accent_color: '#1a2744'
+    };
+    
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update brand name
+          const brandNameEl = document.getElementById('brand-name');
+          if (brandNameEl) {
+            brandNameEl.textContent = config.brand_name || defaultConfig.brand_name;
+          }
+          
+          // Update tagline
+          const taglineEl = document.getElementById('tagline');
+          if (taglineEl) {
+            taglineEl.textContent = config.tagline || defaultConfig.tagline;
+          }
+          
+          // Update services title
+          const servicesTitleEl = document.getElementById('services-title');
+          if (servicesTitleEl) {
+            servicesTitleEl.textContent = config.services_title || defaultConfig.services_title;
+          }
+          
+          // Update contact title
+          const contactTitleEl = document.getElementById('contact-title');
+          if (contactTitleEl) {
+            contactTitleEl.textContent = config.contact_title || defaultConfig.contact_title;
+          }
+          
+          // Apply color changes
+          const primaryColor = config.primary_color || defaultConfig.primary_color;
+          const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+          const textColor = config.text_color || defaultConfig.text_color;
+          const surfaceColor = config.surface_color || defaultConfig.surface_color;
+          const accentColor = config.accent_color || defaultConfig.accent_color;
+          
+          document.documentElement.style.setProperty('--color-gold', primaryColor);
+          document.documentElement.style.setProperty('--color-deep-navy', secondaryColor);
+          document.documentElement.style.setProperty('--color-cream', surfaceColor);
+          document.documentElement.style.setProperty('--color-indigo', accentColor);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['brand_name', config.brand_name || defaultConfig.brand_name],
+          ['tagline', config.tagline || defaultConfig.tagline],
+          ['services_title', config.services_title || defaultConfig.services_title],
+          ['contact_title', config.contact_title || defaultConfig.contact_title]
+        ])
+      });
+    }
+    
+    // Form submission handling
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    // Delivery configuration
+    // backendEndpoint: set this to your real API route for true email + Telegram delivery.
+    // Example: '/api/contact' or 'https://your-domain.com/api/contact'
+    const backendEndpoint = '/api/contact';
+    const contactEmail = 'anton.roma21@gmail.com';
+    const telegramBotToken = '';
+    const telegramChatId = '';
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalHTML = submitBtn.innerHTML;
+
+    const statusBox = document.createElement('div');
+    statusBox.id = 'form-status';
+    statusBox.className = 'hidden mt-4 rounded-lg border px-4 py-3 text-sm';
+    form.appendChild(statusBox);
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function setStatus(type, message, allowHtml = false) {
+      const styles = {
+        info: 'border-white/15 bg-white/5 text-white/80',
+        success: 'border-emerald-400/30 bg-emerald-500/10 text-white',
+        error: 'border-red-400/30 bg-red-500/10 text-white',
+        warning: 'border-amber-400/30 bg-amber-500/10 text-white'
+      };
+
+      statusBox.className = `mt-4 rounded-lg border px-4 py-3 text-sm ${styles[type] || styles.info}`;
+      statusBox.classList.remove('hidden');
+      if (allowHtml) {
+        statusBox.innerHTML = message;
+      } else {
+        statusBox.textContent = message;
+      }
+    }
+
+    function clearStatus() {
+      statusBox.className = 'hidden mt-4 rounded-lg border px-4 py-3 text-sm';
+      statusBox.textContent = '';
+      statusBox.innerHTML = '';
+    }
+
+    function setLoadingState(isLoading) {
+      if (isLoading) {
+        submitBtn.innerHTML = `
+          <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Отправка...</span>
+        `;
+        submitBtn.disabled = true;
+      } else {
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+      }
+    }
+
+    function saveFailedSubmission(payload, details) {
+      try {
+        const key = 'vernoeslovo_failed_submissions';
+        const existing = JSON.parse(localStorage.getItem(key) || '[]');
+        existing.push({
+          ...payload,
+          failedAt: new Date().toISOString(),
+          details
+        });
+        localStorage.setItem(key, JSON.stringify(existing));
+      } catch (err) {
+        console.warn('Failed to save backup submission:', err);
+      }
+    }
+
+    function buildMailtoLink(payload) {
+      const emailSubject = `Новая заявка от ${payload.name}`;
+      const emailBody = `Имя: ${payload.name}
+Контакт: ${payload.contact}
+
+Сообщение:
+${payload.message}`;
+      return `mailto:${contactEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    }
+
+    async function sendViaBackend(payload) {
+      if (!backendEndpoint || backendEndpoint === 'YOUR_BACKEND_ENDPOINT') {
+        return { ok: false, skipped: true, channel: 'backend', error: 'Backend endpoint is not configured.' };
+      }
+
+      try {
+        const response = await fetch(backendEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (_) {
+          data = null;
+        }
+
+        return {
+          ok: response.ok,
+          channel: 'backend',
+          data,
+          error: response.ok ? '' : (data && data.error) ? data.error : `HTTP ${response.status}`
+        };
+      } catch (err) {
+        return { ok: false, channel: 'backend', error: err.message || 'Backend request failed.' };
+      }
+    }
+
+    async function sendViaTelegram(payload) {
+      if (!telegramBotToken || !telegramChatId || telegramBotToken === 'YOUR_BOT_TOKEN') {
+        return { ok: false, skipped: true, channel: 'telegram', error: 'Telegram is not configured.' };
+      }
+
+      const formattedMessage = [
+        'Новая заявка с сайта ВерноеСлово',
+        '',
+        `Имя: ${payload.name}`,
+        `Контакт: ${payload.contact}`,
+        '',
+        'Сообщение:',
+        payload.message,
+        '',
+        `Страница: ${payload.page}`,
+        `Время: ${payload.submittedAt}`
+      ] .join('\n');
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: telegramChatId,
+            text: formattedMessage,
+            disable_web_page_preview: true
+          })
+        });
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (_) {
+          data = null;
+        }
+
+        return {
+          ok: response.ok && !!(data && data.ok),
+          channel: 'telegram',
+          data,
+          error: response.ok && data && data.ok ? '' : (data && data.description) ? data.description : `HTTP ${response.status}`
+        };
+      } catch (err) {
+        return { ok: false, channel: 'telegram', error: err.message || 'Telegram request failed.' };
+      }
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      clearStatus();
+      setLoadingState(true);
+      setStatus('info', 'Проверяем и отправляем заявку...');
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        contact: document.getElementById('contact-info').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        page: window.location.href,
+        submittedAt: new Date().toLocaleString('ru-RU')
+      };
+
+      if (!payload.name || !payload.contact || !payload.message) {
+        setLoadingState(false);
+        setStatus('error', 'Заполните имя, контакт и описание ситуации.');
+        return;
+      }
+
+      const backendResult = await sendViaBackend(payload);
+      const telegramResult = await sendViaTelegram(payload);
+
+      const delivered = backendResult.ok || telegramResult.ok;
+      const failureReasons = [backendResult, telegramResult]
+        .filter(result => !result.ok && !result.skipped)
+        .map(result => `${result.channel}: ${result.error}`);
+
+      if (delivered) {
+        form.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+        clearStatus();
+        form.reset();
+
+        setTimeout(() => {
+          form.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+          setLoadingState(false);
+        }, 4000);
+        return;
+      }
+
+      saveFailedSubmission(payload, {
+        backend: backendResult,
+        telegram: telegramResult
+      });
+
+      setLoadingState(false);
+
+      const mailtoLink = buildMailtoLink(payload);
+      const backendMissing = backendResult.skipped;
+      const telegramMissing = telegramResult.skipped;
+      const details = failureReasons.length
+        ? `<div class="mt-2 text-white/80">${failureReasons.map(item => `<div>${escapeHtml(item)}</div>`).join('')}</div>`
+        : '';
+
+      let message = 'Заявка не была доставлена автоматически.';
+      if (backendMissing) {
+        message += ' Email-отправка в этой HTML-версии не настроена: для настоящих писем нужен backend endpoint.';
+      }
+      if (telegramMissing) {
+        message += ' Telegram также не настроен.';
+      }
+
+      setStatus(
+        'error',
+        `${escapeHtml(message)}${details}<div class="mt-3"><a href="${mailtoLink}" class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-white hover:bg-white/5">Открыть email-клиент вручную</a></div>`,
+        true
+      );
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d911224f564dcc9',t:'MTc3Mjk2NDg0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
