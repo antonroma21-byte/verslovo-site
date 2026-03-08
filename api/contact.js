@@ -4,69 +4,80 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const {
-      name = '',
-      contact = '',
-      situation = '',
-      source = 'website',
-      page = ''
-    } = req.body || {};
+    const body =
+      typeof req.body === 'string'
+        ? JSON.parse(req.body || '{}')
+        : (req.body || {});
 
-    if (!name || !contact || !situation) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    const name = String(body.name || '').trim();
+    const contact = String(body.contact || '').trim();
+    const message = String(body.message || body.situation || '').trim();
+    const source = String(body.source || 'website').trim();
+    const page = String(body.page || '').trim();
+
+    if (!name || !contact || !message) {
+      return res.status(400).json({
+        error: 'Missing required fields',
+        details: {
+          name: !!name,
+          contact: !!contact,
+          message: !!message
+        }
+      });
     }
 
     const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
     const telegramChatId = process.env.TELEGRAM_CHAT_ID;
 
-    let telegramOk = false;
-    let telegramError = null;
+    if (!telegramToken || !telegramChatId) {
+      return res.status(500).json({
+        error: 'Telegram env vars missing'
+      });
+    }
 
-    if (telegramToken && telegramChatId) {
-      const text = [
-        'Новая заявка с сайта ВерноеСлово',
-        '',
-        `Имя: ${name}`,
-        `Контакт: ${contact}`,
-        `Ситуация: ${situation}`,
-        `Источник: ${source}`,
-        `Страница: ${page}`
-      ].join('\n');
+    const text = [
+      'Новая заявка с сайта ВерноеСлово',
+      '',
+      `Имя: ${name}`,
+      `Контакт: ${contact}`,
+      '',
+      'Ситуация:',
+      message,
+      '',
+      `Источник: ${source}`,
+      `Страница: ${page || '—'}`
+    ].join('\n');
 
-      const tgResponse = await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+    const tgResponse = await fetch(
+      `https://api.telegram.org/bot${telegramToken}/sendMessage`,
+      {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           chat_id: telegramChatId,
           text
         })
-      });
-
-      if (tgResponse.ok) {
-        telegramOk = true;
-      } else {
-        telegramError = await tgResponse.text();
       }
-    } else {
-      telegramError = 'Telegram env vars missing';
-    }
+    );
 
-    if (telegramOk) {
-      return res.status(200).json({
-        ok: true,
-        telegramSent: true
+    const tgData = await tgResponse.json().catch(() => null);
+
+    if (!tgResponse.ok || !tgData?.ok) {
+      return res.status(500).json({
+        error: 'Telegram send failed',
+        telegramError: tgData || `HTTP ${tgResponse.status}`
       });
     }
 
-    return res.status(500).json({
-      ok: false,
-      error: 'No delivery channel succeeded',
-      telegramError
+    return res.status(200).json({
+      ok: true,
+      telegramSent: true
     });
   } catch (error) {
     return res.status(500).json({
-      ok: false,
-      error: error.message || 'Server error'
+      error: error?.message || 'Server error'
     });
   }
 };
